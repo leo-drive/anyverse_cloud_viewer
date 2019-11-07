@@ -1,0 +1,16 @@
+<launch>
+  <arg name="path_lidar_point_cloud" default="/home/mfc/datasets/lidar-highway/lidar-highway-routeA/lidar-point-cloud"/>
+  <arg name="rviz" default="false"/>
+
+  <group if="$(arg rviz)">
+    <node name="rviz_anyverse" pkg="rviz" type="rviz" output="screen"
+          args="-d $(find anyverse_cloud_viewer)/rviz_stuff/anyverse.rviz"/>
+  </group>
+
+  <node pkg="anyverse_cloud_viewer" type="anyverse_cloud_viewer_exec"
+        name="anyverse_cloud_viewer_node" output="screen">
+
+    <param name="path_lidar_point_cloud" value="$(arg path_lidar_point_cloud)"/>
+  </node>
+
+</launch>
